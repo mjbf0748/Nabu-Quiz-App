@@ -1,0 +1,13 @@
+{
+  "pathParameters": {
+    "id": "37567b00-68a0-11e7-bc64-01728e4bf8c6",
+    "category" : "SAT"
+  },
+  "requestContext": {
+    "authorizer": {
+      "claims": {
+        "sub": "USER-SUB-1234"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "body": "{\"quizName\":\"Lesson2\",\"image\":\"big.com\",\"category\":\"ACT\",\"subject\":\"math\",\"questions\":\"question1\"}",
+  "requestContext": {
+    "authorizer": {
+      "claims": {
+        "sub": "USER-SUB-1234"
+      }
+    }
+  }
+}

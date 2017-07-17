@@ -1,0 +1,13 @@
+{
+  "pathParameters": {
+    "id": "8884fe10-68a1-11e7-814f-639be9f00740",
+    "category" : "ACT"
+  },
+  "requestContext": {
+    "authorizer": {
+      "claims": {
+        "sub": "USER-SUB-1234"
+      }
+    }
+  }
+}
