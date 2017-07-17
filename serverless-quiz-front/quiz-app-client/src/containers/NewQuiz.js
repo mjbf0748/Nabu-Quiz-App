@@ -3,13 +3,13 @@ import { withRouter } from 'react-router-dom';
 import {
   FormGroup,
   FormControl,
-  ControlLabel,
-  Radio
+  ControlLabel
 } from 'react-bootstrap';
+import { invokeApig, s3Upload } from '../libs/awsLib';
 import LoaderButton from '../components/LoaderButton';
 import config from '../config.js';
 import './NewQuiz.css';
-import { invokeApig, s3Upload } from '../libs/awsLib';
+
 
 class NewQuiz extends Component {
   constructor(props) {
@@ -20,9 +20,10 @@ class NewQuiz extends Component {
     this.state = {
       isLoading: null,
       quizName: '',
+      category: '',
+      subject: '',
     };
   }
-
 
   validateForm() {
     return this.state.quizName.length > 0;
@@ -42,6 +43,19 @@ class NewQuiz extends Component {
     });
   }
 
+  handleCChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  handleSChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+
   handleFileChange = (event) => {
     this.file = event.target.files[0];
   }
@@ -57,18 +71,23 @@ class NewQuiz extends Component {
     this.setState({ isLoading: true });
 
     try {
-        await this.createQuiz({
-        category: this.state.category,
+      const uploadedFilename = (this.file)
+        ? (await s3Upload(this.file, this.props.userToken)).Location
+        : null;
+
+      await this.createQuiz({
         quizName: this.state.quizName,
-        subject: this.state.subject,
-        });
-        this.props.history.push('/');
+        category: this.state.category,
+        subject:  this.state.subject,
+        image: uploadedFilename,
+      });
+      this.props.history.push('/');
     }
     catch(e) {
-        console.log(e);
-        alert(e);
-        this.setState({ isLoading: false });
+      alert(e);
+      this.setState({ isLoading: false });
     }
+
   }
 
 
@@ -77,30 +96,38 @@ class NewQuiz extends Component {
     return (
       <div className="NewQuiz">
         <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId="quizName">
-            <FormControl 
-                onChange={this.handleChange} 
-                value={this.state.quizName}
-             type="text" placeholder="Quiz Name" />
-            </FormGroup>
-            <FormGroup controlId="category">
-            <Radio name="radioGroup" value="SAT" onChange={this.handleChange} inline>
-                SAT
-            </Radio>
-            {' '}
-            <Radio name="radioGroup" value="ACT" onChange={this.handleChange} inline>
-                ACT
-            </Radio>
-            {' '}
-            </FormGroup>
 
-            <FormGroup controlId="subject">
-            <ControlLabel>Subject</ControlLabel>
-            <FormControl componentClass="select" placeholder="select">
+          <FormGroup controlId="quizName">
+            <ControlLabel>Quiz Name </ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.quizName}
+              type="text" />
+          </FormGroup>
+
+          <FormGroup controlId="category">
+            <ControlLabel>Category </ControlLabel>
+            <FormControl
+              onChange={this.handleCChange}
+              value={this.state.category}
+              componentClass="select" 
+              placeholder="Category">
+                <option value="SAT">SAT</option>
+                <option value="ACT">ACT</option>  
+            </FormControl>     
+          </FormGroup>
+
+          <FormGroup controlId="subject">
+            <ControlLabel>Subject </ControlLabel>
+            <FormControl
+              onChange={this.handleCChange}
+              value={this.state.subject}
+              componentClass="select" 
+              placeholder="Subject">
                 <option value="reading">Reading</option>
-                <option value="math">Math</option>
-            </FormControl>
-            </FormGroup>
+                <option value="math">Math</option>  
+            </FormControl>     
+          </FormGroup>
 
           <FormGroup controlId="file">
             <ControlLabel>Image</ControlLabel>
@@ -108,6 +135,7 @@ class NewQuiz extends Component {
               onChange={this.handleFileChange}
               type="file" />
           </FormGroup>
+
           <LoaderButton
             block
             bsStyle="primary"
@@ -119,6 +147,7 @@ class NewQuiz extends Component {
             loadingText="Creating…" />
         </form>
       </div>
+
     );
   }
 }
