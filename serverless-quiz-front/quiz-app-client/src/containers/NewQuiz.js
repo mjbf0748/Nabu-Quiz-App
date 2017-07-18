@@ -31,7 +31,7 @@ class NewQuiz extends Component {
 
   createQuiz(quiz) {
     return invokeApig({
-      path: '/quizzes',
+      path: '/quizzes1',
       method: 'POST',
       body: quiz,
     }, this.props.userToken);

@@ -14,7 +14,7 @@ export default ({ childProps }) => (
     <AppliedRoute path="/" exact component={Home} props={childProps} />
     <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
     <AuthenticatedRoute path="/quiz/new" exact component={NewQuiz} props={childProps} />
-    <AuthenticatedRoute path="/quizzes/:id" exact component={Quizzes} props={childProps} />
+    <AuthenticatedRoute path="/quiz/:id" exact component={Quizzes} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>

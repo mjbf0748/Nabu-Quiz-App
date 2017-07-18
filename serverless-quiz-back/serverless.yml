@@ -1,4 +1,4 @@
-service: quiz-app-api
+service: quiz-app-api1
 
 # Use serverless-webpack plugin to transpile ES6/ES7
 plugins:
@@ -40,7 +40,7 @@ functions:
     handler: create.main
     events:
       - http:
-          path: quizzes
+          path: quizzes1
           method: post
           cors: true
           authorizer:
@@ -53,7 +53,7 @@ functions:
     handler: get.main
     events:
       - http:
-          path: quizzes/{id}
+          path: quizzes1/{id}
           method: get
           cors: true
           authorizer:
@@ -65,7 +65,7 @@ functions:
     handler: list.main
     events:
       - http:
-          path: quizzes
+          path: quizzes1
           method: get
           cors: true
           authorizer:
@@ -78,7 +78,7 @@ functions:
     handler: update.main
     events:
       - http:
-          path: quizzes/{id}
+          path: quizzes1/{id}
           method: put
           cors: true
           authorizer:
@@ -91,7 +91,7 @@ functions:
     handler: delete.main
     events:
       - http:
-          path: quizzes/{id}
+          path: quizzes1/{id}
           method: delete
           cors: true
           authorizer:

@@ -7,7 +7,7 @@ export default {
     IDENTITY_POOL_ID: 'us-east-1:ce027c8c-4341-4d96-94db-4783ab266f4d',
   },
   apiGateway: {
-    URL: 'https://hh5ec3tr94.execute-api.us-east-1.amazonaws.com/prod',
+    URL: 'https://vh6jrkn4o6.execute-api.us-east-1.amazonaws.com/prod',
   },
   s3: {
   BUCKET: 'quiz-image-uploads'
