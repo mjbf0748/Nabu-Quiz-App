@@ -19,9 +19,9 @@ class NewQuiz extends Component {
 
     this.state = {
       isLoading: null,
+      category: 'SAT',
       quizName: '',
-      category: '',
-      subject: '',
+      subject: 'reading',
     };
   }
 
@@ -84,6 +84,7 @@ class NewQuiz extends Component {
       this.props.history.push('/');
     }
     catch(e) {
+      console.log(e);
       alert(e);
       this.setState({ isLoading: false });
     }
@@ -110,8 +111,7 @@ class NewQuiz extends Component {
             <FormControl
               onChange={this.handleCChange}
               value={this.state.category}
-              componentClass="select" 
-              placeholder="Category">
+              componentClass="select" >
                 <option value="SAT">SAT</option>
                 <option value="ACT">ACT</option>  
             </FormControl>     
@@ -120,10 +120,9 @@ class NewQuiz extends Component {
           <FormGroup controlId="subject">
             <ControlLabel>Subject </ControlLabel>
             <FormControl
-              onChange={this.handleCChange}
+              onChange={this.handleSChange}
               value={this.state.subject}
-              componentClass="select" 
-              placeholder="Subject">
+              componentClass="select" >
                 <option value="reading">Reading</option>
                 <option value="math">Math</option>  
             </FormControl>     

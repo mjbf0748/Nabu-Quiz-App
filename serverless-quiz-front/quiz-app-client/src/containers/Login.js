@@ -44,7 +44,6 @@ handleSubmit = async (event) => {
   try {
     const userToken = await this.login(this.state.username, this.state.password);
     this.props.updateUserToken(userToken);
-    this.props.history.push('/');
   }
   catch(e) {
     alert(e);

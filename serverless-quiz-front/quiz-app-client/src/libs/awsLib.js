@@ -25,6 +25,7 @@ export async function invokeApig(
   }
 
   return results.json();
+
 }
 
 export function getAwsCredentials(userToken) {

@@ -5,12 +5,17 @@ import AppliedRoute from './components/AppliedRoute';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import NewQuiz from './containers/NewQuiz';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
+import UnauthenticatedRoute from './components/UnauthenticatedRoute';
+import Quizzes from './containers/Quizzes'
 
 export default ({ childProps }) => (
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
-    <AppliedRoute path="/login" exact component={Login} props={childProps} />
-    <AppliedRoute path="/quiz/new" exact component={NewQuiz} props={childProps} />
+    <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
+    <AuthenticatedRoute path="/quiz/new" exact component={NewQuiz} props={childProps} />
+    <AuthenticatedRoute path="/quizzes/:id" exact component={Quizzes} props={childProps} />
+    { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>
 );
