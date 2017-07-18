@@ -1,4 +1,3 @@
-
 import AWS from 'aws-sdk';
 import config from '../config.js';
 
@@ -8,6 +7,7 @@ export async function invokeApig(
     body }, userToken) {
 
   const url = `${config.apiGateway.URL}${path}`;
+  console.log(url);
   const headers = {
     Authorization: userToken,
   };
@@ -27,6 +27,8 @@ export async function invokeApig(
   return results.json();
 
 }
+
+
 
 export function getAwsCredentials(userToken) {
   const authenticator = `cognito-idp.${config.cognito.REGION}.amazonaws.com/${config.cognito.USER_POOL_ID}`;

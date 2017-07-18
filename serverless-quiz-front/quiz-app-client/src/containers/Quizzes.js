@@ -6,7 +6,7 @@ import {
   ControlLabel,
 } from 'react-bootstrap';
 import LoaderButton from '../components/LoaderButton';
-import { invokeApig, s3Upload } from '../libs/awsLib';
+import { invokeApig, s3Upload, } from '../libs/awsLib';
 import config from '../config.js';
 import './Quizzes.css';
 
@@ -45,7 +45,7 @@ class Quizzes extends Component {
   }
 
   getQuiz() {
-    return invokeApig({ path: `/quizzes/${this.props.match.params.id}`}, this.props.userToken);
+    return invokeApig({ path: `/quizzes/${this.props.match.params.id}` }, this.props.userToken);
   }
 
   saveQuiz(quiz) {
