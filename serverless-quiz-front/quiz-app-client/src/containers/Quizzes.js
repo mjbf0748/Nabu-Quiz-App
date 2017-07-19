@@ -151,6 +151,41 @@ class Quizzes extends Component {
     }
   }
 
+  openQuestions = async (event) => {
+    let uploadedFilename;
+
+    event.preventDefault();
+
+    if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
+      alert('Please pick a file smaller than 5MB');
+      return;
+    }
+
+    this.setState({ isOpening: true });
+
+    try {
+
+      if (this.file) {
+        uploadedFilename = (await s3Upload(this.file, this.props.userToken)).Location;
+      }
+
+      await this.saveQuiz({
+        ...this.state.quiz,
+        quizName: this.state.quizName,
+        category: this.state.category,
+        subject: this.state.subject,
+        image: uploadedFilename || this.state.quiz.image,
+      });
+
+      this.props.history.push(`/quiz/questions/${this.state.quiz.quizId}`);
+    }
+    catch(e) {
+      alert(e);
+      this.setState({ isOpening: false });
+    }
+
+  }
+
   render() {
     return (
       <div className="Quizzes">
@@ -199,6 +234,16 @@ class Quizzes extends Component {
                   onChange={this.handleFileChange}
                   type="file" />
               </FormGroup>
+
+              <LoaderButton
+                block
+                bsStyle="info"
+                bsSize="large"
+                isLoading={this.state.isOpening}
+                onClick={this.openQuestions}
+                  text="Edit Questions"
+                  loadingText="Opening Questions..." />
+
               <LoaderButton
                 block
                 bsStyle="primary"
