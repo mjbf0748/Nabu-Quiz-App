@@ -39,7 +39,7 @@ class Home extends Component {
   }
 
   quizzes() {
-    return invokeApig({ path: '/quizzes' }, this.props.userToken);
+    return invokeApig({ path: '/quizzes1' }, this.props.userToken);
   }
 
   handleQuizClick = (event) => {
@@ -52,7 +52,7 @@ class Home extends Component {
       i !== 0
         ? ( <ListGroupItem
               key={quiz.quizId}
-              href={`/quizzes/${quiz.quizId}`}
+              href={`/quiz/${quiz.quizId}`}
               onClick={this.handleQuizClick}
               header={quiz.quizName}>
                 { "Created: " + (new Date(quiz.createdAt)).toLocaleString() }

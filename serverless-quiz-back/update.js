@@ -4,15 +4,14 @@ import { success, failure } from './libs/response-lib';
 export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: 'quizzes',
+    TableName: 'quizzes1',
     // 'Key' defines the partition key and sort key of the item to be updated
     // - 'userId': User Pool sub of the authenticated user
     // - 'noteId': path parameter
     Key: {
       //userId: event.requestContext.authorizer.claims.sub,
+      userId: event.requestContext.authorizer.claims.sub,
       quizId: event.pathParameters.id,
-      category: event.pathParameters.category,
-
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
@@ -23,7 +22,7 @@ export async function main(event, context, callback) {
       ':subject': data.subject ? data.subject : null,
       ':questions': data.questions ? data.questions : null,
     },
-    //ReturnValues: 'ALL_NEW',
+    ReturnValues: 'ALL_NEW',
   };
 
   try {

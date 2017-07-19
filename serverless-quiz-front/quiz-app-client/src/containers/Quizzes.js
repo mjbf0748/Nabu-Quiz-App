@@ -10,6 +10,9 @@ import { invokeApig, s3Upload, } from '../libs/awsLib';
 import config from '../config.js';
 import './Quizzes.css';
 
+
+
+
 class Quizzes extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +39,7 @@ class Quizzes extends Component {
         quizName: results.quizName,
         subject: results.subject,
         image: results.image,
+
       });
     }
     catch(e) {
@@ -45,12 +49,12 @@ class Quizzes extends Component {
   }
 
   getQuiz() {
-    return invokeApig({ path: `/quizzes/${this.props.match.params.id}` }, this.props.userToken);
+    return invokeApig({ path: `/quizzes1/${this.props.match.params.id}` }, this.props.userToken);
   }
 
   saveQuiz(quiz) {
     return invokeApig({
-      path: `/quizzes/${this.props.match.params.id}`,
+      path: `/quizzes1/${this.props.match.params.id}`,
       method: 'PUT',
       body: quiz,
     }, this.props.userToken);
@@ -58,13 +62,13 @@ class Quizzes extends Component {
 
   deleteQuiz() {
     return invokeApig({
-      path: `/quizzes/${this.props.match.params.id}`,
+      path: `/quizzes1/${this.props.match.params.id}`,
       method: 'DELETE',
     }, this.props.userToken);
   }
 
   validateForm() {
-    return this.state.category.length > 0;
+    return this.state.quizName.length > 0;
   }
 
   formatFilename(str) {
@@ -103,7 +107,9 @@ class Quizzes extends Component {
 
       await this.saveQuiz({
         ...this.state.quiz,
+        quizName: this.state.quizName,
         category: this.state.category,
+        subject: this.state.subject,
         image: uploadedFilename || this.state.quiz.image,
       });
       this.props.history.push('/');

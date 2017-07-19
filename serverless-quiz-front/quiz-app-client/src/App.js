@@ -19,12 +19,12 @@ import AWS from 'aws-sdk';
 class App extends Component {
   
 constructor(props) {
-super(props);
+  super(props);
 
 this.state = {
   userToken: null,
   isLoadingUserToken: true,
-};
+  };
 }
 
 updateUserToken = (userToken) => {

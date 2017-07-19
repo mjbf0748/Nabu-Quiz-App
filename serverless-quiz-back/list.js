@@ -3,7 +3,7 @@ import { success, failure } from './libs/response-lib';
 
 export async function main(event, context, callback) {
   const params = {
-    TableName: 'quizzes',
+    TableName: 'quizzes1',
     // Here you only define the table name and run scan to return everything.  
   };
 
