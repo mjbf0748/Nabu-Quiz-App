@@ -15,10 +15,11 @@ export async function main(event, context, callback) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: 'SET quizName = :quizName, image = :image,subject = :subject, questions = :questions ',
+    UpdateExpression: 'SET quizName = :quizName, image = :image,subject = :subject,category = :category,questions = :questions ',
     ExpressionAttributeValues: {
       ':quizName': data.quizName ? data.quizName : null,
       ':image': data.image ? data.image : null,
+      ':category': data.category ? data.category : null,
       ':subject': data.subject ? data.subject : null,
       ':questions': data.questions ? data.questions : null,
     },

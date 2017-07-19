@@ -82,6 +82,16 @@ class Quizzes extends Component {
       [event.target.id]: event.target.value
     });
   }
+  handleCChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+  handleSChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
 
   handleFileChange = (event) => {
     this.file = event.target.files[0];
@@ -147,10 +157,31 @@ class Quizzes extends Component {
         { this.state.quiz &&
           ( <form onSubmit={this.handleSubmit}>
               <FormGroup controlId="quizName">
+                <ControlLabel>Quiz Name </ControlLabel>
                 <FormControl
                   onChange={this.handleChange}
                   value={this.state.quizName}
-                  componentClass="textarea" />
+                  type="text" />
+              </FormGroup>
+              <FormGroup controlId="category">
+                <ControlLabel>Category </ControlLabel>
+                <FormControl
+                  onChange={this.handleCChange}
+                  value={this.state.category}
+                  componentClass="select" >
+                    <option value="SAT">SAT</option>
+                    <option value="ACT">ACT</option>  
+                </FormControl>     
+              </FormGroup>
+              <FormGroup controlId="subject">
+                <ControlLabel>Subject </ControlLabel>
+                <FormControl
+                  onChange={this.handleSChange}
+                  value={this.state.subject}
+                  componentClass="select" >
+                    <option value="reading">Reading</option>
+                    <option value="math">Math</option>  
+                </FormControl>     
               </FormGroup>
               { this.state.quiz.image &&
               ( <FormGroup>
