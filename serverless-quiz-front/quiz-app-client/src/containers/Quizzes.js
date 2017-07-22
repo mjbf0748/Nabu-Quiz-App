@@ -26,7 +26,8 @@ class Quizzes extends Component {
       category: '',
       quizName: '',
       subject: '',
-      image: ''
+      image: '',
+      questions: ''
     };
   }
 
@@ -39,6 +40,7 @@ class Quizzes extends Component {
         quizName: results.quizName,
         subject: results.subject,
         image: results.image,
+        questions: results.questions,
 
       });
     }
@@ -121,6 +123,7 @@ class Quizzes extends Component {
         category: this.state.category,
         subject: this.state.subject,
         image: uploadedFilename || this.state.quiz.image,
+        questions: this.state.questions
       });
       this.props.history.push('/');
     }
@@ -175,6 +178,7 @@ class Quizzes extends Component {
         category: this.state.category,
         subject: this.state.subject,
         image: uploadedFilename || this.state.quiz.image,
+        questions: this.state.questions
       });
 
       this.props.history.push(`/quiz/questions/${this.state.quiz.quizId}`);

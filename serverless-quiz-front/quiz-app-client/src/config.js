@@ -10,6 +10,7 @@ export default {
     URL: 'https://vh6jrkn4o6.execute-api.us-east-1.amazonaws.com/prod',
   },
   s3: {
-  BUCKET: 'quiz-image-uploads'
+  BUCKET: 'quiz-image-uploads',
+  QUESTIONS: 'quiz-questions'
   },
 };
