@@ -10,7 +10,7 @@ class AddQuestions extends Component {
   constructor(props) {
     super(props);
 
-    this.file = null;
+    this.file = [];
 
     this.state = {
       isLoading: null,
@@ -20,7 +20,7 @@ class AddQuestions extends Component {
       quizName: '',
       subject: '',
       image: '',
-      questions: ''
+      questions: '',
     };
   }
   async componentDidMount() {
@@ -34,6 +34,7 @@ class AddQuestions extends Component {
         image: results.image,
         questions: results.questions
       });
+      //console.log(JSON.stringify(this.state.questions));
     }
     catch(e) {
       console.log(e);
@@ -53,12 +54,28 @@ class AddQuestions extends Component {
   }
 
   handleChange = (event) => {
-    this.questions = event.formData
-    console.log(this.questions)
+    this.questions = event.formData;
+    //var obj = JSON.parse(event.formData);
+    //console.log(event.formData.Questions.Files);
   }
 
-  
+  handleFileChange = (event) => {
+    this.file = event.target.files[0];
+  }
+
+  formatFilename(str) {
+    return (str.length < 50)
+      ? str
+      : str.substr(0, 20) + '...' + str.substr(str.length - 20, str.length);
+  }
+
+
+
   handleSubmit = async (event) => {
+
+    let uploadedFilename;
+
+
     try {
       await this.saveQuiz({
         ...this.state.quiz,
@@ -137,10 +154,8 @@ const uiSchema = {
   }
 };
 
-const formData = {};
 
 
-    
 
 
 const log = (type) => console.log.bind(console, type);
@@ -148,8 +163,8 @@ const log = (type) => console.log.bind(console, type);
     <Form className="App"
         schema={schema}
         uiSchema={uiSchema}
-        formData={this.questions}
-        value={formData}
+        formData={this.state.questions}
+        value={this.state.questions}
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         onError={log("errors")}
