@@ -57,18 +57,33 @@ class AddQuestions extends Component {
     this.questions = event.formData;
   }
 
-
-  formatFilename(str) {
-    return (str.length < 50)
-      ? str
-      : str.substr(0, 20) + '...' + str.substr(str.length - 20, str.length);
-  }
-
+  formatFilename(dataURI) {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+}
 
 
   handleSubmit = async (event) => {
 
     let uploadedFilename;
+    let i;
+    //var obj = event.formData.Questions[0].Files;
+    
+    let qs = event.formData.Questions
+
+    let numQuestions = qs.length;
+    for (i = 0; i < numQuestions; i++) {
+      let image = qs[i].Files;
+      if (image != null) {
+        let fix = this.formatFilename(image);
+        uploadedFilename = (await s3Upload(fix, this.props.userToken)).Location;
+      }
+    }
+
 
     try {
       await this.saveQuiz({
