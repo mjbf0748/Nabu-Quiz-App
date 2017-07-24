@@ -1,5 +1,5 @@
 {
-  "body": "{\"quizName\":\"api1\",\"image\":\"big.com\",\"category\":\"ACT\",\"subject\":\"math\",\"questions\":\"question1\"}",
+  "body": "{\"quizName\":\"newTable\",\"image\":\"big.com\",\"category\":\"ACT\",\"subject\":\"math\",\"questions\":\"question1\"}",
   "requestContext": {
     "authorizer": {
       "claims": {

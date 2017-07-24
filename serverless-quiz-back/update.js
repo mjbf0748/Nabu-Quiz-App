@@ -4,13 +4,12 @@ import { success, failure } from './libs/response-lib';
 export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: 'quizzes1',
+    TableName: 'quizzes2',
     // 'Key' defines the partition key and sort key of the item to be updated
     // - 'userId': User Pool sub of the authenticated user
     // - 'noteId': path parameter
     Key: {
       //userId: event.requestContext.authorizer.claims.sub,
-      userId: event.requestContext.authorizer.claims.sub,
       quizId: event.pathParameters.id,
     },
     // 'UpdateExpression' defines the attributes to be updated
