@@ -55,13 +55,8 @@ class AddQuestions extends Component {
 
   handleChange = (event) => {
     this.questions = event.formData;
-    //var obj = JSON.parse(event.formData);
-    //console.log(event.formData.Questions.Files);
   }
 
-  handleFileChange = (event) => {
-    this.file = event.target.files[0];
-  }
 
   formatFilename(str) {
     return (str.length < 50)
@@ -74,7 +69,6 @@ class AddQuestions extends Component {
   handleSubmit = async (event) => {
 
     let uploadedFilename;
-
 
     try {
       await this.saveQuiz({
@@ -89,7 +83,7 @@ class AddQuestions extends Component {
     }
     catch(e) {
       alert(e);
-      this.setState({ isLoading: false });
+      //this.setState({ isLoading: false });
     }
   }
 

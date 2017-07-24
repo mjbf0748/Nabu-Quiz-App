@@ -13,7 +13,7 @@ export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
 
   const params = {
-    TableName: 'quizzes1',
+    TableName: 'quizzes2',
     // 'Item' contains the attributes of the item to be created
     // - 'userId': because users are authenticated via Cognito User Pool, we
     //             will use the User Pool sub (a UUID) of the authenticated user

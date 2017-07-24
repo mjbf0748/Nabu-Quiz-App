@@ -40,7 +40,7 @@ functions:
     handler: create.main
     events:
       - http:
-          path: quizzes1
+          path: quizzes2
           method: post
           cors: true
           authorizer:
@@ -53,9 +53,9 @@ functions:
     handler: get.main
     events:
       - http:
-          path: quizzes1/{id}
+          path: quizzes2/{id}
           method: get
-          cors: true
+          cors: false
           authorizer:
             arn: arn:aws:cognito-idp:us-east-1:163071061491:userpool/us-east-1_eV5e7RO12
   list:
@@ -65,9 +65,9 @@ functions:
     handler: list.main
     events:
       - http:
-          path: quizzes1
+          path: quizzes2
           method: get
-          cors: true
+          cors: false
           authorizer:
             arn: arn:aws:cognito-idp:us-east-1:163071061491:userpool/us-east-1_eV5e7RO12
 
@@ -78,7 +78,7 @@ functions:
     handler: update.main
     events:
       - http:
-          path: quizzes1/{id}
+          path: quizzes2/{id}
           method: put
           cors: true
           authorizer:
@@ -91,7 +91,7 @@ functions:
     handler: delete.main
     events:
       - http:
-          path: quizzes1/{id}
+          path: quizzes2/{id}
           method: delete
           cors: true
           authorizer:
