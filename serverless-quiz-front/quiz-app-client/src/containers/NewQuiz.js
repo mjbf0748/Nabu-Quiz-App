@@ -21,7 +21,7 @@ class NewQuiz extends Component {
       isLoading: null,
       category: 'SAT',
       quizName: '',
-      subject: 'reading',
+      subject: 'reading/Writing',
     };
   }
 
@@ -36,6 +36,7 @@ class NewQuiz extends Component {
       body: quiz,
     }, this.props.userToken);
   }
+
 
   handleChange = (event) => {
     this.setState({
@@ -59,6 +60,8 @@ class NewQuiz extends Component {
   handleFileChange = (event) => {
     this.file = event.target.files[0];
   }
+
+
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -93,11 +96,21 @@ class NewQuiz extends Component {
 
 
 
+  
+  
+  subjectHandler = <option value="reading">English</option>;
+
+
   render() {
+    if (this.state.category == 'SAT') {
+        this.subjectHandler = <option value="reading">Reading/Writing</option>;
+    } else {
+        this.subjectHandler = <option value="reading">English</option>;
+    }
+
     return (
       <div className="NewQuiz">
         <form onSubmit={this.handleSubmit}>
-
           <FormGroup controlId="quizName">
             <ControlLabel>Quiz Name </ControlLabel>
             <FormControl
@@ -123,8 +136,9 @@ class NewQuiz extends Component {
               onChange={this.handleSChange}
               value={this.state.subject}
               componentClass="select" >
-                <option value="reading">Reading</option>
+                {this.subjectHandler}
                 <option value="math">Math</option>  
+                
             </FormControl>     
           </FormGroup>
 
