@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom';
 import './AddQuestions.css';
 import Form from "react-jsonschema-form";
 import LoaderButton from '../components/LoaderButton';
-import { invokeApig, s3Upload, s3QuestionsUpload} from '../libs/awsLib';
-import config from '../config.js';
+import { invokeApig, s3Upload} from '../libs/awsLib';
+//import config from '../config.js';
 
 class AddQuestions extends Component {
   constructor(props) {

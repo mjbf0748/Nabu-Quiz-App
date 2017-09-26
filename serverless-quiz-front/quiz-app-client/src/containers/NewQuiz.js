@@ -21,7 +21,7 @@ class NewQuiz extends Component {
       isLoading: null,
       category: 'SAT',
       quizName: '',
-      subject: 'reading/Writing',
+      subject: 'math',
     };
   }
 
@@ -96,17 +96,7 @@ class NewQuiz extends Component {
 
 
 
-  
-  
-  subjectHandler = <option value="reading">English</option>;
-
-
   render() {
-    if (this.state.category == 'SAT') {
-        this.subjectHandler = <option value="reading">Reading/Writing</option>;
-    } else {
-        this.subjectHandler = <option value="reading">English</option>;
-    }
 
     return (
       <div className="NewQuiz">
@@ -138,7 +128,8 @@ class NewQuiz extends Component {
               componentClass="select" >
                 {this.subjectHandler}
                 <option value="math">Math</option>  
-                
+                <option value="english">English</option>
+                <option value="reading/writing">Reading/Writing</option> 
             </FormControl>     
           </FormGroup>
 
