@@ -11,8 +11,6 @@ import config from '../config.js';
 import './Quizzes.css';
 
 
-
-
 class Quizzes extends Component {
   constructor(props) {
     super(props);
@@ -191,6 +189,7 @@ class Quizzes extends Component {
   }
 
   render() {
+
     return (
       <div className="Quizzes">
         { this.state.quiz &&
@@ -218,10 +217,12 @@ class Quizzes extends Component {
                   onChange={this.handleSChange}
                   value={this.state.subject}
                   componentClass="select" >
-                    <option value="reading">Reading</option>
-                    <option value="math">Math</option>  
+                    {this.subjectHandler}
+                    <option value="math">Math</option>
+                    <option value="english">English</option>
+                    <option value="reading/writing">Reading/Writing</option>  
                 </FormControl>     
-              </FormGroup>
+          </FormGroup>
               { this.state.quiz.image &&
               ( <FormGroup>
                 <ControlLabel>Image</ControlLabel>
